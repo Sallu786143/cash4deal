@@ -134,11 +134,11 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<version>3.4.3</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>io.openliberty.features</groupId>
 			<artifactId>wsSecurity-1.1</artifactId>
 			<version>24.0.0.9</version>
-		</dependency>
+		</dependency> -->
 
 	</dependencies>
 
