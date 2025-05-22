@@ -100,11 +100,11 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.12.1</version>
 		</dependency>
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>demo</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.example</groupId>-->
+<!--			<artifactId>demo</artifactId>-->
+<!--			<version>0.0.1-SNAPSHOT</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
