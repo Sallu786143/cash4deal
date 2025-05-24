@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="cardsidebar" class="halo-sidebar halo-sidebar-right halo-cart-sidebar" data-card-sidebar id="halo-cart-sidebar">
+<div  class="halo-sidebar-header text-left">
+    <span class="title">Shopping Cart</span>
+    <a href="#" class="halo-sidebar-close" data-close-auth-sidebar="" title="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+        </svg>
+    </a>
+    <div class="wrapper-cartCount">
+        <span class="cartCount" data-cart-count="">3</span>
+        <span>items</span>
+    </div>
+</div>
+<div class="halo-sidebar-wrapper CartItemDrop">
+    <div class="haloCalculatorShipping">
+        <div class="progress progress-free progress-100" data-shipping-progress="">
+            <div class="progress_shipping" role="progressbar">
+                <div class="progress-meter" style="width: 60%;">60%</div>
+            </div>
+        </div>
+        <div class="message" data-shipping-message=""><span>Only </span><span class="money">$69.00</span><span>away from </span><span class="text">free shipping</span></div>
+    </div>
+    <div class="previewCart-wrapper">
+        <div class="previewCart custom-scrollbar">
+            <ul class="previewCartList list-unstyled">
+                <li class="previewCartItem clearfix">
+                    <a href="#" class="previewCartItem-image">
+                        <img th:src="@{/images/card-product/img-16.jpg}" alt="Halo Product">
+                    </a>
+                    <div class="previewCartItem-content">
+                        <a href="#" class="previewCartItem-name link-underline">
+                            <span class="text">Dinterdum Pretium Condimento</span>
+                        </a>
+                        <div class="previewCartItem-options">
+                            <span class="previewCartItem-variant"> Black / XS</span>
+                            <a href="javascript:void(0);" class="previewCartItem-edit" data-open-edit-cart="" data-edit-cart-url="/products/naminos-dementus-a-dincidunto-6?variant=39504901341274&amp;view=ajax_edit_cart" data-edit-cart-id="39504901341274" data-edit-cart-quantity="1"
+                               data-line="39504901341274:6317036bb7e9264dc5231958196b34f1" aria-label="Remove Cadetblue / XS / Option 1">
+                                <svg viewBox="0 0 576 512" class="icon icon-edit" >
+                                    <path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="previewCartItem-change">
+                            <div class="previewCartItem-price">
+                                            <span class="price">
+                                                    <span class="money">$99.00</span>
+                                            </span>
+                            </div>
+                            <div class="previewCartItem-qty">
+                                <label class="form-label hiddenLabel" for="upsell-update-395049013412741"></label>
+                                <a href="#" data-minus-quantity-cart="" class="minus btn-quantity"></a>
+                                <input class="form-input quantity" name="quantity" id="upsell-update-395049013412741" data-qtt-id1="quantity39504901341274" value="1" type="number" data-inventory-quantity="4" data-cart-quantity="" data-cart-quantity-id="39504901341274" data-line="39504901341274:6317036bb7e9264dc5231958196b34f1">
+                                <a href="#" data-plus-quantity-cart="" class="plus btn-quantity"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="previewCartItem-remove" data-cart-remove="" data-cart-remove-id="39504901341274" data-line="39504901341274:6317036bb7e9264dc5231958196b34f1" aria-label="Remove Naminos demen dincidunto - Cadetblue / XS / Option 1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="previewCartItem clearfix">
+                    <a href="#" class="previewCartItem-image">
+                        <img th:src="@{/images/card-product/img-9.jpg}" alt="Halo Product">
+                    </a>
+                    <div class="previewCartItem-content">
+                        <a href="#" class="previewCartItem-name link-underline">
+                            <span class="text">Loremous Saliduar A Cosmopolis </span>
+                        </a>
+                        <div class="previewCartItem-options">
+                            <span class="previewCartItem-variant"> White / M / Option 1</span>
+                            <a href="javascript:void(0);" class="previewCartItem-edit" data-open-edit-cart="" data-edit-cart-url="/products/naminos-dementus-a-dincidunto-6?variant=39504901341274&amp;view=ajax_edit_cart" data-edit-cart-id="39504901341274" data-edit-cart-quantity="1"
+                               data-line="39504901341274:6317036bb7e9264dc5231958196b34f1" aria-label="Remove Cadetblue / XS / Option 1">
+                                <svg viewBox="0 0 576 512" class="icon icon-edit" >
+                                    <path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="previewCartItem-change">
+                            <div class="previewCartItem-price">
+                                            <span class="price">
+                                                    <span class="money">$289.00</span>
+                                            </span>
+                            </div>
+                            <div class="previewCartItem-qty">
+                                <label class="form-label hiddenLabel" for="upsell-update-395049013412742"></label>
+                                <a href="#" data-minus-quantity-cart="" class="minus btn-quantity"></a>
+                                <input class="form-input quantity" name="quantity" id="upsell-update-395049013412742" data-qtt-id1="quantity39504901341274" value="1" type="number" data-inventory-quantity="4" data-cart-quantity="" data-cart-quantity-id="39504901341274" data-line="39504901341274:6317036bb7e9264dc5231958196b34f1">
+                                <a href="#" data-plus-quantity-cart="" class="plus btn-quantity"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="previewCartItem-remove" data-cart-remove="" data-cart-remove-id="39504901341274" data-line="39504901341274:6317036bb7e9264dc5231958196b34f1" aria-label="Remove Naminos demen dincidunto - Cadetblue / XS / Option 1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                        </svg>
+                    </a>
+                </li>
+                <li class="previewCartItem clearfix">
+                    <a href="#" class="previewCartItem-image">
+                        <img th:src="@{/images/card-product/img-7.jpg}" alt="Halo Product">
+                    </a>
+                    <div class="previewCartItem-content">
+                        <a href="#" class="previewCartItem-name link-underline">
+                            <span class="text">Loremous Saliduar A Cosmopolito </span>
+                        </a>
+                        <div class="previewCartItem-options">
+                            <span class="previewCartItem-variant"> Green / S / Option 3</span>
+                            <a href="javascript:void(0);" class="previewCartItem-edit" data-open-edit-cart="" data-edit-cart-url="/products/naminos-dementus-a-dincidunto-6?variant=39504901341274&amp;view=ajax_edit_cart" data-edit-cart-id="39504901341274" data-edit-cart-quantity="1"
+                               data-line="39504901341274:6317036bb7e9264dc5231958196b34f1" aria-label="Remove Cadetblue / XS / Option 1">
+                                <svg viewBox="0 0 576 512" class="icon icon-edit" >
+                                    <path d="M402.3 344.9l32-32c5-5 13.7-1.5 13.7 5.7V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h273.5c7.1 0 10.7 8.6 5.7 13.7l-32 32c-1.5 1.5-3.5 2.3-5.7 2.3H48v352h352V350.5c0-2.1.8-4.1 2.3-5.6zm156.6-201.8L296.3 405.7l-90.4 10c-26.2 2.9-48.5-19.2-45.6-45.6l10-90.4L432.9 17.1c22.9-22.9 59.9-22.9 82.7 0l43.2 43.2c22.9 22.9 22.9 60 .1 82.8zM460.1 174L402 115.9 216.2 301.8l-7.3 65.3 65.3-7.3L460.1 174zm64.8-79.7l-43.2-43.2c-4.1-4.1-10.8-4.1-14.8 0L436 82l58.1 58.1 30.9-30.9c4-4.2 4-10.8-.1-14.9z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="previewCartItem-change">
+                            <div class="previewCartItem-price">
+                                            <span class="price">
+                                                    <span class="money">$289.00</span>
+                                            </span>
+                            </div>
+                            <div class="previewCartItem-qty">
+                                <label class="form-label hiddenLabel" for="upsell-update-395049013412743"></label>
+                                <a href="#" data-minus-quantity-cart="" class="minus btn-quantity"></a>
+                                <input class="form-input quantity" name="quantity" id="upsell-update-395049013412743" data-qtt-id1="quantity39504901341274" value="1" type="number" data-inventory-quantity="4" data-cart-quantity="" data-cart-quantity-id="39504901341274" data-line="39504901341274:6317036bb7e9264dc5231958196b34f1">
+                                <a href="#" data-plus-quantity-cart="" class="plus btn-quantity"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="javascript:void(0)" class="previewCartItem-remove" data-cart-remove="" data-cart-remove-id="39504901341274" data-line="39504901341274:6317036bb7e9264dc5231958196b34f1" aria-label="Remove Naminos demen dincidunto - Cadetblue / XS / Option 1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                            <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <div class="previewCartCollection">
+                <h3 class="previewCartTitle text-left">You May Also Like</h3>
+                <div class="previewCartProduct" data-product-collection-cart>
+                    <div class="halo-product-block previewCartCarousel custom-product-carousel" data-product-carousel="" data-item-to-show="1" data-item-dots="false" data-item-arrows="true" data-item-dots-mb="false" data-item-arrows-mb="true">
+                        <div class="row">
+                            <div class="halo-row-item product-item halo-row-item product-item-custom">
+                                <div class="product-card">
+                                    <div class="product-card-top">
+                                        <a href="#" class="card-media">
+                                            <img th:src="@{/images/card-product/img-18.jpg}" alt="Halo Product">
+                                        </a>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-card-information text-left">
+                                            <a href="#" class="card-title link-underline card-title-ellipsis">
+                                                <span class="text">Dinterdum Pretium Condimento<span data-change-title> - Gray</span></span>
+                                            </a>
+                                            <div class="card-price price__sale">
+                                                <div class="price-item price-item--regular">
+                                                    <span class="money ">$140.00</span>
+                                                </div>
+                                                <div class="price-item price__last">
+                                                    <span class="money ">$126.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-swatch text-center clearfix">
+                                                <ul class="swatch list-unstyled">
+                                                    <li class="item">
+                                                        <label  class="swatch-label is-active" data-value="Gray" data-variant-id="">
+                                                                            <span class="pattern" style="background-color: #afaea9">
+                                                                            </span>
+                                                        </label>
+                                                    </li>
+                                                    <li class="item">
+                                                        <label  class="swatch-label" data-value="Blue" data-variant-id="">
+                                                                            <span class="pattern" style="background-color: #7d919c">
+                                                                            </span>
+                                                        </label>
+                                                    </li>
+                                                    <li class="item">
+                                                        <label  class="swatch-label" data-value="Yellow" data-variant-id="">
+                                                                            <span class="pattern" style="background-color: #ffe676">
+                                                                            </span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a class="card-button text-underline" href="#" tabindex="0">
+                                                <span class="text">Details</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="halo-row-item product-item halo-row-item product-item-custom">
+                                <div class="product-card">
+                                    <div class="product-card-top">
+                                        <a href="#" class="card-media">
+                                            <img th:src="@{/images/card-product/img-19.jpg}" alt="Halo Product">
+                                        </a>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-card-information text-left">
+                                            <a href="#" class="card-title link-underline card-title-ellipsis">
+                                                <span class="text">Dempus Lortis Cosmo Sapiendo<span data-change-title> - Blue</span></span>
+                                            </a>
+                                            <div class="card-price">
+                                                <span class="money">$86.00</span>
+                                            </div>
+                                            <div class="card-swatch text-center clearfix">
+                                                <ul class="swatch list-unstyled">
+                                                    <li class="item">
+                                                        <label  class="swatch-label is-active" data-value="Blue" data-variant-id="">
+                                                            <span class="pattern" style="background-color: #4b6cc0"></span>
+                                                        </label>
+                                                    </li>
+                                                    <li class="item">
+                                                        <label  class="swatch-label" data-value="Green" data-variant-id="">
+                                                            <span class="pattern" style="background-color: mediumseagreen"></span>
+                                                        </label>
+                                                    </li>
+                                                    <li class="item">
+                                                        <label  class="swatch-label" data-value="black" data-variant-id="">
+                                                            <span class="pattern" style="background-color: black"></span>
+                                                        </label>
+                                                    </li>
+                                                    <li class="item">
+                                                        <label  class="swatch-label" data-value="Orange" data-variant-id="">
+                                                            <span class="pattern" style="background-color: moccasin"></span>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a class="card-button text-underline" href="#" tabindex="0">
+                                                <span class="text">Details</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="previewCartInfo">
+            <div class="previewCartTotals subTotal clearfix">
+                <div class="item previewCartTotals-label">
+                    Subtotal
+                </div>
+                <div class="item previewCartTotals-value">
+                    <span class="money">$461.00</span>
+                </div>
+            </div>
+            <div class="previewCartAction text-left">
+                <div class="previewCartCheckbox global-checkbox">
+                    <input class="global-checkbox--input" type="checkbox" name="sidebar_cart_conditions" id="sidebar_cart_conditions" >
+                    <label class="global-checkbox--label form-label--checkbox" for="sidebar_cart_conditions">I agree with the</label>
+                    <a href="javascript:void(0)" data-term-condition="">Terms Conditions</a>
+                </div>
+                <div class="previewCartGroup">
+                    <button class="button button-1 button-checkout"  disabled="disabled" >Checkout</button>
+                    <a class="button button-2 button-view-cart text-center" href="page-cart.html">View Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
