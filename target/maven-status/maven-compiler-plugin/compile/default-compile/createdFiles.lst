@@ -8,7 +8,6 @@ com/example/filters/JwtAuthFilter.class
 com/example/exception/JwtExceptionHandler.class
 com/example/entity/ErrorResponse.class
 com/example/demo/DemoApplication.class
-com/example/repo/UserRepository.class
 com/example/dto/LoginRequest.class
 com/example/utility/JwtUtil.class
 com/example/exception/ValidationExceptionHandler.class
@@ -17,7 +16,6 @@ com/example/demo/ServletInitializer.class
 com/example/config/WebConfig.class
 com/example/config/SecurityConfig.class
 com/example/service/JwtService.class
-com/example/entity/User.class
 com/example/dto/AuthRequest.class
 com/example/exception/BadCredentialsException.class
 com/example/exception/EmailAlreadyRegisteredException.class
