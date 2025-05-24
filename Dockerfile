@@ -5,5 +5,4 @@ RUN maven clean package -DskipTests
 FROM openjdk:17.0.1-jdk-slim
 COPY --from=build /target/demo-0.0.1-SNAPSHOT.jar cash4deals.jar
 EXPOSE 8080
-ENTRYPOINT
-["java", "-jar", "demo. jar"]
+ENTRYPOINT ["java", "-jar", "cash4deals.jar"]
