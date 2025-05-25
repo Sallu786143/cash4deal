@@ -9,7 +9,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -49,6 +52,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
 
 
+
+
+
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType("application/json");
@@ -60,25 +66,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 username = jwtutil.extractUsername(token);
             }
 
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
+                UserDetails userDetails = serviceDetails.loadUserByUsername(username);
+                System.out.println("Try block");
+                if (jwtutil.isTokenValid(token, userDetails)) {
+                    // If token is valid, set authentication in the SecurityContext
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails,
+                                    null,
+                                    userDetails.getAuthorities()
+                            );
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
+            }
 
-//            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-//
-//                UserDetails userDetails = serviceDetails.loadUserByUsername(username);
-//                System.out.println("Try block");
-//                if (jwtutil.isTokenValid(token, userDetails)) {
-//                    // If token is valid, set authentication in the SecurityContext
-//                    UsernamePasswordAuthenticationToken authToken =
-//                            new UsernamePasswordAuthenticationToken(
-//                                    userDetails,
-//                                    null,
-//                                    userDetails.getAuthorities()
-//                            );
-//                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//                    SecurityContextHolder.getContext().setAuthentication(authToken);
-//                }
-//            }
-//
         } catch (ExpiredJwtException | JwtTokenExpiredException e) {
             // 🔴 Handle the expired token error directly
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -95,6 +99,4 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);  // Continue with the filter chain
     }
 
-//        }
-//    }
-}
+    }
