@@ -53,7 +53,7 @@ public class AuthService {
 
         userRepository.save(user);
 
-        return"User Registerd Successfully";
+        return "User Registered Successfully";
 
     //    return jwtUtil.generateToken(user); // Or however you return the token/confirmation
     }

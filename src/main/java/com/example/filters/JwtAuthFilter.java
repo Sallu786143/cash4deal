@@ -38,7 +38,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             // Define an array of regex patterns for static resources
             String[] staticPaths = {
                     "^/css/.*", "^/js/.*", "^/img/.*", "^/fonts/.*", "^/images/.*",
-                    "^/api/.*", "^/bootstrap/.*", "^/fancybox/.*", "^/fonts.spartan/.*",
+                    "^/.*", "^/bootstrap/.*", "^/fancybox/.*", "^/fonts.spartan/.*",
                     "^/jquery/.*", "^/jquery.cookie/.*", "^/jquery.elevateZoom/.*",
                     "^/masonry/.*", "^/sass/.*", "^/slick-carouse/.*"
             };

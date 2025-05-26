@@ -16,6 +16,8 @@ public  class  ValidationUtil {
     }
 
     public static Optional<String> validateContact(String contact) {
+
+        System.out.println("Validation Check ========>");
         if (contact == null || contact.trim().isEmpty()) {
             return Optional.of("Email or mobile number is required.");
         }

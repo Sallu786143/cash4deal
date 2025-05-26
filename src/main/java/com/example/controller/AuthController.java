@@ -11,37 +11,71 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/api")
 public class AuthController {
 
     @Autowired
     private AuthService authService;
 
 
+//    @PostMapping("/register")
+//    public ResponseEntity<?> register(@RequestBody AuthRequest request ) {
+//
+//        System.out.println("In register mpodule=====>");
+//
+//        Optional<String> contactError = ValidationUtil.validateContact(request.getContact());
+//        if (contactError.isPresent()) {
+//            return ResponseEntity.badRequest().body(new ErrorResponse(contactError.get()));
+//        }
+//     try {
+//            String token = authService.registerUser(
+//                    request.getName(),
+//                    request.getContact(),
+//                    request.getPassword());
+//            return ResponseEntity.ok(token);
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
+//        }
+//    }
+
+
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AuthRequest request ) {
-
-        System.out.println("In register mpodule=====>");
-
+    public String processRegister(
+            @ModelAttribute("authRequest") AuthRequest request,
+            Model model) {
+System.out.println("Register controller called");
         Optional<String> contactError = ValidationUtil.validateContact(request.getContact());
         if (contactError.isPresent()) {
-            return ResponseEntity.badRequest().body(new ErrorResponse(contactError.get()));
+            System.out.println("Error Messege ========>"+contactError.get());
+            model.addAttribute("message", contactError.get());
+            return "register";
         }
-     try {
-            String token = authService.registerUser(
+
+        try {
+            String msg = authService.registerUser(
                     request.getName(),
                     request.getContact(),
                     request.getPassword());
-            return ResponseEntity.ok(token);
+            model.addAttribute("message", msg);
+            System.out.println("Messege======>"+msg);
+            return "redirect:/register"; // a success page or redirect
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(new ErrorResponse(e.getMessage()));
+            model.addAttribute("error", e.getMessage());
+            return "register";
         }
     }
+
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("authRequest", new AuthRequest()); // empty form backing object
+        return "register";  // loads register.html
+    }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
@@ -59,7 +93,7 @@ public class AuthController {
     }
 
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/")
     public String helloWorld(){
         return "index";
     }
