@@ -37,49 +37,10 @@
 
     <!-- Plugins Fancybox CSS File -->
     <link rel="stylesheet" th:href="@{/fancybox/fancybox.css}">
-
+    <script th:src="@{/js/register.js}"></script>
 
 </head>
-<script>
 
-    function submitRegister() {
-
-    alert("on click");
-    const data = {
-        name: document.getElementById('name').value,
-        contact: document.getElementById('contact').value,
-        password: document.getElementById('password').value
-    };
-
-    fetch('/registered', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            // add CSRF token header here if needed
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => Promise.reject(err));
-        }
-        alert(response.json());
-        return response.json();
-    })
-    .then(result => {
-        // Show success message (optional)
-        alert(result.message || 'Registration successful!');
-
-        // Redirect to dashboard page
-        window.location.href = '/dashboard';
-    })
-    .catch(error => {
-        // Show error message on the page
-        document.getElementById('message').innerText = error.message || 'An error occurred';
-    });
-}
-
-</script>
 <body class="template-page skin-1">
 	<div class="page-wrapper">
 		<div class="announcement-bar">
@@ -126,34 +87,36 @@
                                 <div class="register-heading">
 									<div class="title">Register</div>
 									<div class="desc">Please register below to create an account</div>
-								</div>
-                                <form  method="post" onsubmit="submitRegister();"  class="contact-form">
+                                    <div id="message" style="color:red;"></div>
+
+                                </div>
+                                <form  method="post"   class="contact-form">
 
                                     <!-- Full Name -->
                                     <div class="form-field">
                                         <label class="form-label">Full Name</label>
-                                        <input class="form-input form-input-placeholder"  type="text" placeholder="Your name" />
+                                        <input class="form-input form-input-placeholder" id="name"  type="text" placeholder="Your name" />
                                     </div>
 
                                     <!-- Email -->
                                     <div class="form-field">
                                         <label class="form-label">Your Email Address<span class="red-asterisk">*</span></label>
-                                        <input class="form-input form-input-placeholder"  type="email" placeholder="Your email" required />
+                                        <input class="form-input form-input-placeholder"   id="contact" type="email" placeholder="Your email" required />
                                     </div>
 
                                     <!-- Password -->
                                     <div class="form-field">
-                                        <label class="form-label" for="password-rg">Your Password<span class="red-asterisk">*</span></label>
-                                        <input id="password-rg" class="form-input form-input-placeholder"  type="password" placeholder="Your password" required />
+                                        <label class="form-label" >Your Password<span class="red-asterisk">*</span></label>
+                                        <input id="password" class="form-input form-input-placeholder"  type="password" placeholder="Your password" required />
                                     </div>
+
 
                                     <!-- Submit -->
                                     <div class="form-actions">
-                                        <button type="submit"  class="button button-1">Register</button>
+                                        <button type="button" onclick="submitRegister()"  class="button button-1">Register</button>
                                     </div>
 
                                 </form>
-
 
                             </div>
 						</div>

@@ -1202,7 +1202,7 @@
                         </svg>
                 </a>
             </div>
-            <div class="halo-sidebar-wrapper custom-scrollbar">
+            <div id ="sidebar-content" class="halo-sidebar-wrapper custom-scrollbar">
                 <form accept-charset="UTF-8" action="#" method="post" class="auth-form">
                     <input name="form_type" type="hidden" value="customer_login">
                     <input name="utf8" type="hidden" value="✓">
@@ -1225,7 +1225,7 @@
                         <a class="auth-link link link-underline" href="#">
                             <span class="text">Forgot your password?</span>
                         </a>
-                        <a href="#" class="button button-1 button-register">
+                        <a href="#" class="button button-1 button-register" onclick="loadRegisterForm(event)">
                                 Create account
                             </a>
                     </div>

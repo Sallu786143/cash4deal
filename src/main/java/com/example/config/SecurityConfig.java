@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -34,19 +35,15 @@ public class SecurityConfig {
                                 "/images/**", "/fancybox/**", "/jquery/**",
                                 "/jquery.cookie/**", "/jquery.elevateZoom/**", "/masonry/**",
                                 "/sass/**", "/slick-carouse/**",
-                                "/register", "/login", "/", "/index"
+                                "/register", "/login", "/", "/index","/registered"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
+
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
-
-
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/register", "/login", "/api/**")
-                )
-
+                .csrf(csrf -> csrf.disable())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
