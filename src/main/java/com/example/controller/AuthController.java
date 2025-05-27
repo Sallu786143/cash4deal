@@ -9,11 +9,15 @@ import com.example.service.AuthService;
 import com.example.utility.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -43,54 +47,65 @@ public class AuthController {
 //        }
 //    }
 
+    @PostMapping(value = "/registered", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> processRegister(@RequestBody AuthRequest request) {
 
-    @PostMapping("/register")
-    public String processRegister(
-            @ModelAttribute("authRequest") AuthRequest request,
-            Model model) {
-System.out.println("Register controller called");
+        System.out.println("Process Register");
+        Map<String, String> response = new HashMap<>();
+
         Optional<String> contactError = ValidationUtil.validateContact(request.getContact());
         if (contactError.isPresent()) {
-            System.out.println("Error Messege ========>"+contactError.get());
-            model.addAttribute("message", contactError.get());
-            return "register";
+            response.put("message", contactError.get());
+            return ResponseEntity.badRequest().body(response);
         }
 
         try {
-            String msg = authService.registerUser(
-                    request.getName(),
-                    request.getContact(),
-                    request.getPassword());
-            model.addAttribute("message", msg);
-            System.out.println("Messege======>"+msg);
-            return "redirect:/register"; // a success page or redirect
+            String msg = authService.registerUser(request.getName(), request.getContact(), request.getPassword());
+            System.out.println("Message ======>" + msg);
+            response.put("message", msg);
+            return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
-            model.addAttribute("error", e.getMessage());
-            return "register";
+            response.put("message", e.getMessage());
+            return ResponseEntity.badRequest().body(response);
         }
     }
+
+
+
 
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
-        model.addAttribute("authRequest", new AuthRequest()); // empty form backing object
-        return "register";  // loads register.html
+        System.out.println("Show Registration Form");
+        if (!model.containsAttribute("authRequest")) {
+            System.out.println("In If=======> Adding authRequest");
+            model.addAttribute("authRequest", new AuthRequest());
+        } else {
+            System.out.println("authRequest already present");
+        }
+        return "register";
     }
 
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        try {
-            String token = authService.authenticateUser(request.getContact(), request.getPassword());
-            return ResponseEntity.ok(new TokenResponse(token)); // or just return the token
-        } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new ErrorResponse("Invalid credentials"));
-        }
-        catch (RuntimeException e ) {
-            return ResponseEntity.badRequest()
-                    .body(new ErrorResponse(e.getMessage()));
-        }
+    @GetMapping("/login")
+    public String showLoginPage(){
+        return "login";
     }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+//        try {
+//            String token = authService.authenticateUser(request.getContact(), request.getPassword());
+//            return ResponseEntity.ok(new TokenResponse(token)); // or just return the token
+//        } catch (BadCredentialsException e) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                    .body(new ErrorResponse("Invalid credentials"));
+//        }
+//        catch (RuntimeException e ) {
+//            return ResponseEntity.badRequest()
+//                    .body(new ErrorResponse(e.getMessage()));
+//        }
+//    }
 
 
     @GetMapping(value = "/")

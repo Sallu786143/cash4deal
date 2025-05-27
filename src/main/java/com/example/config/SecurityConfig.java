@@ -38,21 +38,16 @@ public class SecurityConfig {
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
-
-
-
-                .formLogin(withDefaults()) // Form login if needed, or you can configure JWT login
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // No sessions, JWT only
+                        .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
-                .formLogin(AbstractHttpConfigurer::disable) // Disable form login page
-                .httpBasic(AbstractHttpConfigurer::disable) // Disable basic authentication
 
-                // Add your custom JWT filter, but exclude static resources from it
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/css/**", "/js/**", "/images/**")); // Disable CSRF for static resources if needed
 
-        ;
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/register", "/login", "/api/**")
+                )
+
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
