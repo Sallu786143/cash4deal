@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="login-sidebar" class="halo-sidebar halo-sidebar-right halo-auth-sidebar" data-auth-sidebar id="halo-auth-sidebar">
+
+    <!--Registartion form-->
+    <div id="register-form" style ="display:none" class="halo-sidebar-header">
+        <div class="wrapper-content">
+            <div class="register-heading">
+                <span class="title">Register</span>
+                <div class="desc">Please register below to create an account</div>
+                <a href="#" class="halo-sidebar-close" data-close-auth-sidebar="" title="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                        <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                    </svg>
+                </a>
+                <div id="message" style="color:red;"></div>
+
+            </div>
+            <div id ="sidebar-content-register" class="halo-sidebar-wrapper custom-scrollbar">
+
+                <form  method="post"   class="contact-form">
+                    <!-- Full Name -->
+                    <div class="form-field">
+                        <label class="form-label">Full Name</label>
+                        <input class="form-input form-input-placeholder" id="name"  type="text" placeholder="Your name" />
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-field">
+                        <label class="form-label">Your Email Address<span class="red-asterisk">*</span></label>
+                        <input class="form-input form-input-placeholder"   id="contact" type="email" placeholder="Your email" required />
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-field">
+                        <label class="form-label" >Your Password<span class="red-asterisk">*</span></label>
+                        <input id="password" class="form-input form-input-placeholder"  type="password" placeholder="Your password" required />
+                    </div>
+
+
+                    <!-- Submit -->
+                    <div class="form-actions auth-actions text-center">
+                        <button type="button" onclick="submitRegister()"  class="button button-1">Register</button>
+                        <span>
+    Already have an account?
+    <a href="#" onclick="showLogin()">Login</a> here
+</span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end Registration form -->
+    <div id="sidebar-content-login">
+        <div class="halo-sidebar-header text-left">
+            <span class="title">Login</span>
+            <a href="#" class="halo-sidebar-close" data-close-auth-sidebar="" title="Close">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path d="M 38.982422 6.9707031 A 2.0002 2.0002 0 0 0 37.585938 7.5859375 L 24 21.171875 L 10.414062 7.5859375 A 2.0002 2.0002 0 0 0 8.9785156 6.9804688 A 2.0002 2.0002 0 0 0 7.5859375 10.414062 L 21.171875 24 L 7.5859375 37.585938 A 2.0002 2.0002 0 1 0 10.414062 40.414062 L 24 26.828125 L 37.585938 40.414062 A 2.0002 2.0002 0 1 0 40.414062 37.585938 L 26.828125 24 L 40.414062 10.414062 A 2.0002 2.0002 0 0 0 38.982422 6.9707031 z"></path>
+                </svg>
+            </a>
+        </div>
+        <div  class="halo-sidebar-wrapper custom-scrollbar">
+            <form accept-charset="UTF-8" action="#" method="post" class="auth-form">
+                <input name="form_type" type="hidden" value="customer_login">
+                <input name="utf8" type="hidden" value="✓">
+                <div class="form-field">
+                    <label class="form-label" for="customer_email">
+                        Email Address
+                        <em>*</em>
+                    </label>
+                    <input id="customer_email" class="form-input form-input-placeholder" type="email" value="" name="customer[email]" required="" placeholder="Email Address">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="customer_password">
+                        Password
+                        <em>*</em>
+                    </label>
+                    <input id="customer_password" class="form-input form-input-placeholder" type="password" value="" required="" placeholder="Password" name="customer[password]">
+                </div>
+                <div class="form-actions auth-actions text-center">
+                    <input type="submit" class="button button-2 button-login" value="Log in" onclick="">
+                    <a class="auth-link link link-underline" href="#">
+                        <span class="text">Forgot your password?</span>
+                    </a>
+                    <a href="#" class="button button-1 button-register" onclick="showRegistrationPage()">
+                        Create account
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- END: Login Sidebar -->
+</body>
+</html>

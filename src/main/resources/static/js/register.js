@@ -38,22 +38,41 @@ function submitRegister() {
     });
 }
 
+function showRegistrationPage(){
+event.preventDefault();
+        document.getElementById('sidebar-content-login').style.display = 'none';
+        document.getElementById('register-form').style.display = 'block';
+
+}
+function showLogin() {
+    event.preventDefault();
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('sidebar-content-login').style.display = 'block';
+}
 
 function loadRegisterForm(event) {
-    event.preventDefault(); // prevent page reload
 
-    fetch('/register.html') // path to your register.html in /static/
+    fetch('/register')  // Adjust path as needed
         .then(response => {
             if (!response.ok) {
-                throw new Error("Failed to load register form.");
+                throw new Error("Could not load register form");
             }
             return response.text();
         })
         .then(html => {
-            document.getElementById('form-container').innerHTML = html;
+            document.getElementById('sidebar-content-register').innerHTML = html;
+            showSidebar(); // Ensure sidebar is visible
         })
         .catch(error => {
-            console.error("Error loading register form:", error);
-            alert("Could not load the registration form.");
+            console.error("Error loading form:", error);
+            alert("Failed to load registration form.");
         });
 }
+
+function showSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        sidebar.style.display = 'block'; // or add 'open' class
+    }
+}
+
