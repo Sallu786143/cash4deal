@@ -55,7 +55,6 @@ public class AuthController {
         Map<String, String> response = new HashMap<>();
 
         Optional<String> contactError = ValidationUtil.validateContact(request.getContact());
-        System.out.println("Validation check ====>"+contactError.isPresent());
         if (contactError.isPresent()) {
             response.put("message", contactError.get());
             return ResponseEntity.badRequest().body(response);

@@ -23,16 +23,21 @@ function submitRegister() {
         return response.json();
     })
     .then(result => {
-        alert(result.message || 'Registration successful!');
-        window.location.href = '/'; // Redirect to home
+        const messageBox = document.getElementById('message');
+        if (messageBox) {
+            messageBox.innerText = 'Registration successful!';
+            messageBox.style.color = 'black'; // ✅ Success message in black
+        }
+        // Redirect after a delay (optional)
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 1500);
     })
     .catch(error => {
-        // This assumes `message` is a visible div
         const errorBox = document.getElementById('message');
         if (errorBox) {
             errorBox.innerText = error.message || 'An error occurred';
-        } else {
-            alert(error.message || 'An error occurred');
+            errorBox.style.color = 'red';
         }
     });
 }
