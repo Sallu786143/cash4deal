@@ -1,5 +1,4 @@
 function submitRegister() {
-    alert("on click");
 
     const data = {
         name: document.getElementById('name').value,
