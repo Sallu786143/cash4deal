@@ -1,15 +1,12 @@
 function submitRegister() {
-
     const data = {
         name: document.getElementById('name').value,
         contact: document.getElementById('contact').value,
         password: document.getElementById('password').value
     };
 
-    console.log(data); // Debugging purpose
-    // alert(JSON.stringify(data)); // Optional
 
-    fetch('/registered', {
+    fetch(`/registered?email=${encodeURIComponent(data.contact)}&name=${encodeURIComponent(data.name)}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -26,9 +23,8 @@ function submitRegister() {
         const messageBox = document.getElementById('message');
         if (messageBox) {
             messageBox.innerText = 'Registration successful!';
-            messageBox.style.color = 'black'; // ✅ Success message in black
+            messageBox.style.color = 'black';
         }
-        // Redirect after a delay (optional)
         setTimeout(() => {
             window.location.href = '/';
         }, 1500);

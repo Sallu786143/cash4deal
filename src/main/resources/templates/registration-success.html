@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to CashbackMart</title>
+    <meta charset="UTF-8">
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f7f9fc; margin: 0; padding: 0;">
+
+<table align="center" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 40px;">
+    <tr>
+        <td style="padding: 20px; background-color: #0052cc; text-align: center;">
+            <img src="https://www.cashbackmart.ca/images/logo/cashbackmartlogo.jpeg"
+                 alt="CashbackMart Logo"
+                 width="120"
+                 style="margin-bottom: 10px;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 20px;">Welcome to CashbackMart</h1>
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 30px;">
+            <p style="font-size: 16px; color: #333333;">
+                Hello <strong th:text="${name}">User</strong>,
+            </p>
+            <p style="font-size: 16px; color: #333333;">
+                🎉 Thank you for registering with <strong>CashbackMart</strong>! We're excited to have you on board.
+            </p>
+            <p style="font-size: 16px; color: #333333;">
+                Our team will notify you about the latest cashback offers, exclusive deals, and top products handpicked just for you.
+            </p>
+            <p style="font-size: 16px; color: #333333;">
+                If you have any questions or need assistance, feel free to reach out to our support team at <a href="mailto:support@cashbackmart.com">support@cashbackmart.com</a>.
+            </p>
+
+            <p style="font-size: 16px; color: #333333;">
+                Cheers,<br>
+                The CashbackMart Team
+            </p>
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding: 20px; background-color: #f0f0f0; text-align: center; font-size: 12px; color: #999999;">
+            © 2025 CashbackMart. All rights reserved.<br>
+            <a href="https://cashbackmart.com" style="color: #0052cc; text-decoration: none;">Visit our website</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

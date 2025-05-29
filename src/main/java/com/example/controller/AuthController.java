@@ -6,7 +6,9 @@ import com.example.entity.ErrorResponse;
 import com.example.entity.TokenResponse;
 import com.example.exception.BadCredentialsException;
 import com.example.service.AuthService;
+import com.example.utility.MailService;
 import com.example.utility.ValidationUtil;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,6 +27,9 @@ public class AuthController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private MailService mailService;
 
 
 //    @PostMapping("/register")
@@ -47,11 +52,9 @@ public class AuthController {
 //        }
 //    }
 
-    @PostMapping(value = "/registered", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/registered")
     @ResponseBody
     public ResponseEntity<Map<String, String>> processRegister(@RequestBody AuthRequest request) {
-
-        System.out.println("Process Register");
         Map<String, String> response = new HashMap<>();
 
         Optional<String> contactError = ValidationUtil.validateContact(request.getContact());
@@ -61,16 +64,23 @@ public class AuthController {
         }
 
         try {
-            String msg = authService.registerUser(request.getName(), request.getContact(), request.getPassword());
-            System.out.println("Message ======>" + msg);
-            response.put("message", msg);
+            authService.registerUser(request.getName(), request.getContact(), request.getPassword());
+
+            // Send email asynchronously — no need to block
+            mailService.sendRegistrationMail(request.getContact(), request.getName());
+
+            response.put("message", "Registration successful. Confirmation email will be sent shortly.");
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
             response.put("message", e.getMessage());
             return ResponseEntity.badRequest().body(response);
+        } catch (MessagingException e) {
+            System.err.println("Email sending failed: " + e.getMessage());
+            response.put("message", "Registration successful, but failed to send confirmation email.");
+            return ResponseEntity.ok(response); // ✅ still 200 OK
         }
-    }
 
+    }
 
 
     @GetMapping("/register")
