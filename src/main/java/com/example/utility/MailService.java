@@ -42,10 +42,24 @@ public class MailService {
 
         mailSender.send(message);
     }
+    @Retryable(
+            value = MessagingException.class,
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 2000)
+    )
+    public void sendLoginCode(String to, String code) throws MessagingException {
+        Context context = new Context();
+        context.setVariable("code", code); // for Thymeleaf
 
-    @Recover
-    public void recover(MessagingException ex, String to, String name) {
-        System.err.println("All retries failed. Could not send email to " + to);
-        // TODO: Log to DB or send alert to admin
+        String html = templateEngine.process("login-template", context);
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+        helper.setTo(to);
+        helper.setSubject("Your Login Code");
+        helper.setText(html, true); // true = HTML
+
+        mailSender.send(message);
     }
 }

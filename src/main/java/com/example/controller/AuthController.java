@@ -101,6 +101,42 @@ public class AuthController {
         return "login";
     }
 
+    @PostMapping(value = "/send-login-code", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, String>> sendLoginCode(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        Map<String, String> response = new HashMap<>();
+
+        if (email == null || email.trim().isEmpty() || !email.contains("@")) {
+            response.put("message", "Invalid email address.");
+            return ResponseEntity.badRequest().body(response);
+        }
+
+        try {
+            authService.sendLoginCode(email); // Generate and email the code
+            response.put("message", "Login code sent to your email.");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", "Failed to send login code: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    @PostMapping(value = "/verify-code", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, String>> verifyCode(@RequestBody Map<String, String> payload) {
+        String email = payload.get("email");
+        String code = payload.get("code");
+        Map<String, String> response = new HashMap<>();
+
+        if (authService.verifyCode(email, code)) {
+            response.put("message", "Login successful!");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "Invalid or expired code.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+    }
+
+
 //    @PostMapping("/login")
 //    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
 //        try {

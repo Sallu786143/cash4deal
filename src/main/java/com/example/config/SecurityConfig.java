@@ -35,7 +35,7 @@ public class SecurityConfig {
                                 "/images/**", "/fancybox/**", "/jquery/**",
                                 "/jquery.cookie/**", "/jquery.elevateZoom/**", "/masonry/**",
                                 "/sass/**", "/slick-carouse/**",
-                                "/register", "/login", "/", "/index","/registered"
+                                "/register", "/login", "/", "/index","/registered","/send-login-code","/verify-code"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

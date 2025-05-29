@@ -1,17 +1,23 @@
 package com.example.service;
 
+import com.example.entity.OtpEntry;
 import com.example.entity.User;
 import com.example.exception.BadCredentialsException;
 import com.example.exception.EmailAlreadyRegisteredException;
 import com.example.exception.MobileNumberAlreadyRegisteredException;
 import com.example.repo.UserRepository;
+import com.example.utility.MailService;
 import com.example.utility.ValidationUtil;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 
@@ -26,6 +32,13 @@ public class AuthService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MailService mailService;
+
+    // This stores: email → OTP + createdAt
+    private final Map<String, OtpEntry> otpStorage = new ConcurrentHashMap<>();
+
 
 
 
@@ -78,7 +91,30 @@ public class AuthService {
         return token;
     }
 
+   public void sendLoginCode(String email)  {
+            String code = String.valueOf((int)(Math.random() * 900000) + 100000);
+            otpStorage.put(email, new OtpEntry(code));
+          try {
+                mailService.sendLoginCode(email, code);
+            } catch (MessagingException e) {
+                throw new RuntimeException("Failed to send email after retries", e);
+            }
+        }
+
+        public boolean verifyCode(String email, String inputCode) {
+            OtpEntry entry = otpStorage.get(email);
+            if (entry == null) return false;
+
+            // Expire code after 10 minutes
+            if (entry.getCreatedAt().plusMinutes(10).isBefore(LocalDateTime.now())) {
+                otpStorage.remove(email);
+                return false;
+            }
+
+            return entry.getCode().equals(inputCode);
+        }
+    }
 
 
 
-}
+

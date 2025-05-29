@@ -40,7 +40,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     "^/css/.*", "^/js/.*", "^/img/.*", "^/fonts/.*", "^/images/.*",
                     "^/.*", "^/bootstrap/.*", "^/fancybox/.*", "^/fonts.spartan/.*",
                     "^/jquery/.*", "^/jquery.cookie/.*", "^/jquery.elevateZoom/.*",
-                    "^/masonry/.*", "^/sass/.*", "^/slick-carouse/.*","^/register/.*","^/registered/.*"
+                    "^/masonry/.*", "^/sass/.*", "^/slick-carouse/.*","^/register/.*","^/registered/.*","^/send-login-code/.*"
             };
 
             for (String pattern : staticPaths) {

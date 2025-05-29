@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Login Code</title></head>
+<body>
+<div class="email-container">
+    <!-- ✅ Replace with your actual image path -->
+    <img src="https://www.cashbackmart.ca/images/logo/cashbackmartlogo.jpeg"
+         alt="CashbackMart Logo"
+         width="120"
+         style="margin-bottom: 10px;">
+
+
+    <p>Your one-time login code is:</p>
+    <div class="code" th:text="${code}"></div>
+
+    <p>This code is valid for <strong>10 minutes</strong>.</p>
+
+    <p>If you didn’t request this, please ignore this email.</p>
+
+    <div class="footer">
+        &copy; 2025 CashbackMart. All rights reserved.
+    </div>
+</div>
+</body>
+</html>
